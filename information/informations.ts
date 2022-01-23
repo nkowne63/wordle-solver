@@ -1,7 +1,7 @@
 import { wordFilters } from "./filters";
 import { checker } from "./checker";
 import { FiveStringType, FiveStringStatusType } from "./enums";
-import { words } from "./words";
+import { words } from "../words";
 
 const statusToConditions = (fss: FiveStringStatusType) =>
 	fss.map((status, position) => {
