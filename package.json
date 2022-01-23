@@ -1,13 +1,14 @@
 {
-  "name": "wordle",
-  "version": "1.0.0",
-  "description": "",
+  "name": "wordle-solver",
+  "version": "0.0.1",
+  "description": "solver for wordle",
   "main": "index.js",
   "scripts": {
     "test": "jest"
   },
-  "author": "",
-  "license": "ISC",
+  "private": "true",
+  "author": "@nkowne63",
+  "license": "MIT",
   "devDependencies": {
     "@types/jest": "^27.4.0",
     "jest": "^27.4.7",
