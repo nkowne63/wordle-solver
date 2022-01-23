@@ -4,7 +4,8 @@
   "description": "solver for wordle",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "repl": "ts-node"
   },
   "private": "true",
   "author": "@nkowne63",
