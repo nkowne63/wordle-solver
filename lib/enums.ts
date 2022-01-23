@@ -27,7 +27,7 @@ export const characters = [
 	"z",
 ] as const;
 
-type CharactersType = typeof characters[number];
+export type CharactersType = typeof characters[number];
 
 export const Status = {
 	// gray
