@@ -1,6 +1,6 @@
 import { Status, CharactersType } from "./enums";
 
-export const filters = {
+export const wordFilters = {
 	[Status.WrongPosition]:
 		(char: CharactersType, position: number) => (word: string) =>
 			word[position] !== char,

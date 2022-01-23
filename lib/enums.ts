@@ -42,7 +42,7 @@ export const Status = {
 
 type StatusType = typeof Status[keyof typeof Status];
 
-type KeyBoardStatusType = {
+export type KeyBoardStatusType = {
 	[key in CharactersType]: StatusType;
 };
 
