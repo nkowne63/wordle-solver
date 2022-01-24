@@ -7,14 +7,13 @@ export const AdditionalStatus = {
 export const wordFilters = {
 	[Status.WrongPosition]:
 		(char: CharactersType, position: number) => (word: string) =>
-			word[position] !== char && word.includes(char),
+			word.includes(char) && word[position] !== char,
 	[Status.NotIn]: (char: CharactersType) => (word: string) =>
 		!word.includes(char),
 	[Status.Correct]:
 		(char: CharactersType, position: number) => (word: string) =>
 			word[position] === char,
 	[AdditionalStatus.DoubleWrong]:
-		(char: CharactersType, position: number, count: number) => (word: string) =>
-			wordFilters[Status.WrongPosition](char, position)(word) &&
+		(char: CharactersType, count: number) => (word: string) =>
 			word.split("").filter((c) => c === char).length === count,
 };
