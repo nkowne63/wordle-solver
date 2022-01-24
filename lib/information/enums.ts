@@ -61,7 +61,7 @@ export type FiveStringType = [
 
 type CharStatusType = Exclude<StatusType, typeof Status.Undefined>;
 
-type CharAndStatusType = {
+export type CharAndStatusType = {
 	char: CharactersType;
 	status: CharStatusType;
 };
