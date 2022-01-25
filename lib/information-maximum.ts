@@ -1,12 +1,15 @@
+import { words } from "./words";
 import { word2FiveString } from "./information/enums";
 import { retrievedInfos } from "./information/informations";
 import { pickStrings } from "./random/picker";
 
-export const pickUpInformationMaximum = (words: string[], count: number) => {
-	const answers = pickStrings(words, count);
+export const next = (candidates: string[], count: number = 100) => {
+	const answers =
+		candidates.length > count ? pickStrings(candidates, count) : candidates;
+	// 候補を全体の中から選ぶようにする
 	const tests = pickStrings(words, count);
 	console.time("guess");
-	const result = tests.reduce(
+	const [information, result] = tests.reduce(
 		(prevMaxPair: readonly [number, string], currentTestWord) => {
 			const retrievedInfo =
 				answers
@@ -18,12 +21,15 @@ export const pickUpInformationMaximum = (words: string[], count: number) => {
 								word2FiveString(correct)
 							).information
 					)
+					.filter((i) => i !== Infinity)
 					.reduce((prev, current) => prev + current, 0) / count;
 			const currentPair = [retrievedInfo, currentTestWord] as const;
 			return currentPair[0] > prevMaxPair[0] ? currentPair : prevMaxPair;
 		},
 		[0, ""]
-	)[1];
+	);
 	console.timeEnd("guess");
+	console.log("infomation:", information);
+	console.log("result:", result);
 	return result;
 };

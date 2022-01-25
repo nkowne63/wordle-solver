@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "repl": "ts-node"
+    "repl": "ts-node -e \"var w = require('./index')\" -i"
   },
   "private": "true",
   "author": "@nkowne63",
