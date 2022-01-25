@@ -35,5 +35,11 @@ export const statusFilters = (
 			status: s,
 		})) as FiveStringStatusType;
 	const conditions = statusToConditions(serializedStatus);
-	return conditions.reduce((list, current) => list.filter(current), words);
+	const afterWords = conditions.reduce(
+		(list, current) => list.filter(current),
+		words
+	);
+	console.log(`count: ${words.length} -> ${afterWords.length}`);
+	console.log(`information: ${Math.log2(words.length / afterWords.length)}`);
+	return afterWords;
 };
