@@ -7,7 +7,11 @@ export const next = (candidates: string[], count: number = 100) => {
 	const answers =
 		candidates.length > count ? pickStrings(candidates, count) : candidates;
 	// 候補を全体の中から選ぶようにする
-	const tests = pickStrings(words, count);
+	const tests = [
+		...pickStrings(words, count),
+		// candidatesが少ない場合はcandidatesも含める
+		...(candidates.length > count ? pickStrings(words, count) : candidates),
+	];
 	console.time("guess");
 	const [information, result] = tests.reduce(
 		(prevMaxPair: readonly [number, string], currentTestWord) => {
