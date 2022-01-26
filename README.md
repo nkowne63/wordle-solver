@@ -25,70 +25,64 @@ w.filter は「絞り込み前と後で候補数がどう変化したか」も�
 
 ### 使用例
 
-実際に推論を行うと以下のようになります。
+実際に推論を行うと以下のようになります。（https://www.devangthakkar.com/wordle_archive/?200 での確認）
 
 ```
 > var list = w.words;
 undefined
 > w.next(list)
-guess: 584.494ms
-infomation: 5.205979129983105
-result: earls
-'earls'
-> list = w.filter(list, "earls", "_y___")
-count: 12972 -> 453
-information: 4.839746068409571
+guess: 563.337ms
+infomation: 5.160427564363666
+result: euros
+'euros'
+> var list = w.filter(list, "euros", "y_y__")
+count: 12972 -> 677
+information: 4.260101284880809
+undefined
+> w.next(list)
+guess: 530.326ms
+infomation: 6.643856189774733
+result: rebar
+'rebar'
+> var list = w.filter(list, "rebar", "_y__g")
+count: 677 -> 71
+information: 3.2532649040703148
+undefined
+> w.next(list)
+guess: 238.023ms
+infomation: 5.649747119504682
+result: cheer
+'cheer'
+> var list = w.filter(list, "cheer", "___gg")
+count: 71 -> 54
+information: 0.3948596173412136
+undefined
+> w.next(list)
+guess: 158.583ms
+infomation: 5.754887502163468
+result: ilial
+'ilial'
+> list = w.filter(list, "ilial", "y____")
+count: 54 -> 31
+information: 0.8006911917765933
 [
-  'audit', 'aback', 'vodka', 'champ', 'whack', 'chant', 'today',
-  'comma', 'aphid', 'khaki', 'twang', 'tibia', 'admit', 'aging',
-  'mocha', 'human', 'coach', 'ninja', 'chaff', 'aping', 'about',
-  'china', 'thank', 'aunty', 'quota', 'adopt', 'among', 'agony',
-  'gonad', 'piano', 'topaz', 'afoot', 'pizza', 'quack', 'annoy',
-  'amity', 'dogma', 'nomad', 'again', 'cocoa', 'audio', 'knack',
-  'admin', 'abbot', 'axiom', 'giant', 'titan', 'foamy', 'avian',
-  'avoid', 'tonga', 'affix', 'axion', 'chain', 'antic', 'woman',
-  'guava', 'junta', 'await', 'attic', 'adapt', 'abaca', 'abaci',
-  'abaft', 'abaka', 'abamp', 'aband', 'abaya', 'abmho', 'abohm',
-  'aboma', 'aboon', 'abuna', 'abuzz', 'accoy', 'achoo', 'acidy',
-  'acing', 'acini', 'acmic', 'acock', 'actin', 'acton', 'adbot',
-  'addax', 'addio', 'adhan', 'adman', 'admix', 'adobo', 'adown',
-  'aduki', 'adunc', 'adyta', 'agama', 'agami', 'agita', 'agood',
-  'aguna', 'aguti',
-  ... 353 more items
+  'fixer', 'finer', 'tiger', 'diner',
+  'diver', 'timer', 'giver', 'wider',
+  'piper', 'miner', 'viper', 'diker',
+  'dimer', 'fifer', 'fiver', 'jiver',
+  'kiter', 'mimer', 'miter', 'mixer',
+  'niger', 'niner', 'niter', 'nixer',
+  'piker', 'titer', 'twier', 'viner',
+  'viver', 'wiper', 'wiver'
 ]
 > w.next(list)
-guess: 537.463ms
-infomation: 6.276509250999221
-result: avian
-'avian'
-> list = w.filter(list, "avian", "y____")
-count: 453 -> 113
-information: 2.0031882776310477
-[
-  'champ', 'whack', 'today', 'comma', 'mocha', 'coach', 'chaff',
-  'quota', 'topaz', 'quack', 'dogma', 'cocoa', 'foamy', 'bobac',
-  'bobak', 'bocca', 'booay', 'bowat', 'boyau', 'bubba', 'buffa',
-  'byway', 'chack', 'chaco', 'chado', 'chaft', 'chapt', 'chawk',
-  'chota', 'chufa', 'coact', 'coady', 'coapt', 'cobza', 'cohab',
-  'copay', 'cotta', 'couta', 'coyau', 'cuppa', 'cycad', 'douma',
-  'ducat', 'dukka', 'dumka', 'dwaum', 'fouat', 'ghaut', 'goaty',
-  'gogga', 'gompa', 'gopak', 'gotta', 'guaco', 'gumma', 'gutta',
-  'gyoza', 'hoagy', 'hodad', 'hodja', 'hooka', 'hopak', 'huzza',
-  'hypha', 'khaph', 'khoja', 'kofta', 'kokam', 'koppa', 'kyack',
-  'mohua', 'momma', 'motza', 'mugga', 'mutha', 'muzak', 'myoma',
-  'occam', 'octad', 'ogham', 'otaku', 'outta', 'phoca', 'poach',
-  'pooja', 'pooka', 'poppa', 'pucka', 'puffa', 'pujah', 'pukka',
-  'pzazz', 'quaff', 'quaky', 'quayd', 'quoad', 'thack', 'thawy',
-  'thuja', 'thuya',
-  ... 13 more items
-]
-> w.next(list)
-guess: 535.296ms
-infomation: 4.808899367762383
-result: chota
-'chota'
-> list = w.filter(list, "chota", "yg__y")
-count: 113 -> 1
-information: 6.820178962415188
-[ 'whack' ]
+guess: 64.916ms
+infomation: 2.619667960634469
+result: twang
+'twang'
+> list = w.filter(list, "twang", "g___y")
+count: 31 -> 1
+information: 4.954196310386875
+[ 'tiger' ]
+>
 ```
