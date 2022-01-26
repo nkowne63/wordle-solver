@@ -5,5 +5,5 @@ export { statusFilters as filter } from "./lib/utils";
 console.log(`
 var list = w.words;
 w.next(list);
-var list = w.filter(list, "", "");
+list = w.filter(list, "", "");
 `);
