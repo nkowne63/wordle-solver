@@ -1,4 +1,5 @@
-import { assertsFive, characters } from "./enums";
+import { assertsFive } from "../utils";
+import { characters } from "./enums";
 
 describe("characters", () => {
 	it("length", () => {

@@ -1,3 +1,4 @@
+import { assertsFive } from "../utils";
 import {
 	FiveStringType,
 	FiveStringStatusType,
@@ -5,7 +6,6 @@ import {
 	CharAndStatusType,
 	CharactersType,
 	characters,
-	assertsFive,
 } from "./enums";
 
 export const checker = (
