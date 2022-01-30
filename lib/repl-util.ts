@@ -3,7 +3,7 @@ import {
 	FiveStringStatusType,
 	Status,
 } from "./information/enums";
-import { filter } from "./information/informations";
+import { statusToConditions } from "./information/informations";
 
 const SimpleStatus = {
 	green: "g",
@@ -34,8 +34,12 @@ export const statusFilters = (
 			char: word[position] as CharactersType,
 			status: s,
 		})) as FiveStringStatusType;
-	const afterWords = filter(words, serializedStatus);
+	const conditions = statusToConditions(serializedStatus);
+	const afterWords = conditions.reduce(
+		(list, current) => list.filter(current),
+		words
+	);
 	console.log(`count: ${words.length} -> ${afterWords.length}`);
-	console.log(`infor: ${Math.log2(words.length / afterWords.length)}`);
+	console.log(`info: ${Math.log2(words.length / afterWords.length)}`);
 	return afterWords;
 };
