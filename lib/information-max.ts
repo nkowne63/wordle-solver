@@ -32,7 +32,7 @@ export const next = (candidates: string[], count: number = 100) => {
 			const currentPair = [retrievedInfo, currentTestWord] as const;
 			const newPair =
 				currentPair[0] > prevMaxPair[0] ? currentPair : prevMaxPair;
-			if (count > 500 && currentPair[0] > prevMaxPair[0]) {
+			if (count >= 100 && currentPair[0] > prevMaxPair[0]) {
 				console.log("percentage", (100 * index) / tests.length);
 				console.log("new max info", newPair[0]);
 				console.log("new max word", newPair[1]);
