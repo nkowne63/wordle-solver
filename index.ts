@@ -1,4 +1,4 @@
-export { next } from "./lib/information-maximum";
+export { next } from "./lib/information-max";
 export { words } from "./lib/words";
 export { statusFilters as filter } from "./lib/repl-util";
 

@@ -8,7 +8,7 @@ export const next = (candidates: string[], count: number = 100) => {
 		candidates.length > count ? pickStrings(candidates, count) : candidates;
 	// 候補を全体の中から選ぶようにする
 	const tests = [
-		...pickStrings(words, count),
+		...(words.length > count ? pickStrings(words, count) : words),
 		// candidatesが少ない場合はcandidatesも含める
 		...(candidates.length > count
 			? pickStrings(candidates, count)
@@ -16,7 +16,7 @@ export const next = (candidates: string[], count: number = 100) => {
 	];
 	console.time("guess");
 	const [information, result] = tests.reduce(
-		(prevMaxPair: readonly [number, string], currentTestWord) => {
+		(prevMaxPair: readonly [number, string], currentTestWord, index) => {
 			const infos = answers
 				.map(
 					(correct) =>
@@ -30,7 +30,14 @@ export const next = (candidates: string[], count: number = 100) => {
 			const retrievedInfo =
 				infos.reduce((prev, current) => prev + current, 0) / infos.length;
 			const currentPair = [retrievedInfo, currentTestWord] as const;
-			return currentPair[0] > prevMaxPair[0] ? currentPair : prevMaxPair;
+			const newPair =
+				currentPair[0] > prevMaxPair[0] ? currentPair : prevMaxPair;
+			if (count > 500 && currentPair[0] > prevMaxPair[0]) {
+				console.log("percentage", (100 * index) / tests.length);
+				console.log("new max info", newPair[0]);
+				console.log("new max word", newPair[1]);
+			}
+			return newPair;
 		},
 		[0, ""]
 	);
