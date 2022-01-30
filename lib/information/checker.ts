@@ -1,9 +1,51 @@
-import { FiveStringType, FiveStringStatusType, Status } from "./enums";
-export const checker = (word: FiveStringType, correct: FiveStringType) =>
-	word.map((c, pos) =>
-		correct[pos] === c
-			? { char: c, status: Status.Correct }
-			: correct.includes(c)
-			? { char: c, status: Status.WrongPosition }
-			: { char: c, status: Status.NotIn }
-	) as FiveStringStatusType;
+import {
+	FiveStringType,
+	FiveStringStatusType,
+	Status,
+	CharAndStatusType,
+	CharactersType,
+	characters,
+	assertsFive,
+} from "./enums";
+
+export const checker = (
+	word: FiveStringType,
+	correct: FiveStringType
+): FiveStringStatusType => {
+	const { status } = word.reduce(
+		(temp, char, index) => {
+			const { status, charCount } = temp;
+			const correctCharCount = correct.filter((c) => c === char).length;
+			const currentCharCount = charCount[char];
+			if (char === correct[index]) {
+				return {
+					status: [...status, { char, status: Status.Correct }],
+					charCount: { ...charCount, [char]: currentCharCount + 1 },
+				};
+			} else if (!correct.includes(char)) {
+				return {
+					status: [...status, { char, status: Status.NotIn }],
+					charCount: { ...charCount, [char]: currentCharCount + 1 },
+				};
+			} else if (currentCharCount < correctCharCount) {
+				return {
+					status: [...status, { char, status: Status.WrongPosition }],
+					charCount: { ...charCount, [char]: currentCharCount + 1 },
+				};
+			} else {
+				return {
+					status: [...status, { char, status: Status.NotIn }],
+					charCount: { ...charCount, [char]: currentCharCount + 1 },
+				};
+			}
+		},
+		{
+			status: [] as CharAndStatusType[],
+			charCount: Object.fromEntries(characters.map((c) => [c, 0] as const)) as {
+				[c in CharactersType]: number;
+			},
+		}
+	);
+	assertsFive(status);
+	return status;
+};
